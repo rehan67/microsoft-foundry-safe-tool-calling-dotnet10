@@ -1,4 +1,4 @@
-# How Microsoft Foundry Agents Call Tools Safely (.NET 10 — Clean Architecture)
+# How Microsoft Foundry Agents Call Tools Safely (.NET 10)
 
 Companion source code and engineering walkthrough for **Episode 01** of **Microsoft Foundry: Zero to Production** by **Rehan Akbar**.
 
@@ -59,6 +59,7 @@ Demonstrates why authentication alone is insufficient when an AI agent proposes 
 ## Quick Start & Automated Verification
 
 ### Prerequisites
+
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) (verified on SDK `10.0.404`)
 
 ### Build & Run All Tests
@@ -75,7 +76,7 @@ Runs both unit tests (`ToolArgumentParserTests`) and live ASP.NET Core `WebAppli
 dotnet run --project src/OrderAgent.Api
 ```
 
-*(Note: `OrderAgent.Api` intentionally defaults to a fail-closed authentication scheme in Episode 01; Episode 02 wires live Microsoft Entra ID / OIDC `JwtBearer` authentication and a persistent relational database alongside a live Microsoft Foundry agent.)*
+_(Note: `OrderAgent.Api` intentionally defaults to a fail-closed authentication scheme in Episode 01; Episode 02 wires live Microsoft Entra ID / OIDC `JwtBearer` authentication and a persistent relational database alongside a live Microsoft Foundry agent.)_
 
 ---
 
@@ -90,7 +91,8 @@ dotnet run --project src/OrderAgent.Api
 
 ## Author & Connect
 
-**Rehan Akbar** — Software Engineer  
+**Rehan Akbar** — Software Engineer
+
 - Blog: https://www.rehanakbar.dev/
 - LinkedIn: https://linkedin.com/in/rehan-akbar95
 - GitHub: https://github.com/rehan67
