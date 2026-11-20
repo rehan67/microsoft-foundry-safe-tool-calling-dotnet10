@@ -1,8 +1,13 @@
-# How Microsoft Foundry Agents Call Tools Safely (.NET 10)
+# Microsoft Foundry: Safe Agent Tool Calling & Secure .NET 10 Architecture
 
-Companion source code and engineering walkthrough for **Episode 01** of **Microsoft Foundry: Zero to Production** by **Rehan Akbar**.
+Companion source code and engineering walkthroughs for **Episode 01** and **Episode 02** of **Microsoft Foundry: Zero to Production** by **Rehan Akbar**.
 
-Demonstrates why authentication alone is insufficient when an AI agent proposes tool calls (`get_order(orderId)`), and how to enforce **multi-tenant authorization** inside an **ASP.NET Core (.NET 10)** backend structured with **Clean Architecture** using a **Two-Gate Authorization Model** before querying data.
+Demonstrates why authentication alone is insufficient when an AI agent proposes tool calls (`get_order(orderId)`), and how to build and verify a **multi-tenant ASP.NET Core (.NET 10)** backend structured with **Clean Architecture**, **Two-Gate Authorization**, **EF Core 10 Query Filters**, and a **4-Caller `WebApplicationFactory` Test Matrix**.
+
+### Episodes Covered in This Repository
+
+- **Episode 01 — How Microsoft Foundry AI Agents Actually Work:** [Full Engineering Walkthrough (`docs/blog.md`)](docs/blog.md)
+- **Episode 02 — Microsoft Foundry + .NET 10: Secure Agent Architecture:** [Full Engineering Walkthrough (`docs/episode-02-secure-agent-architecture.md`)](docs/episode-02-secure-agent-architecture.md)
 
 ---
 
@@ -14,7 +19,8 @@ Demonstrates why authentication alone is insufficient when an AI agent proposes 
 ├── README.md
 ├── OrderAgentApi.slnx
 ├── docs/
-│   └── blog.md                                          # Complete Episode 01 technical walkthrough
+│   ├── blog.md                                          # Episode 01 deep-dive walkthrough
+│   └── episode-02-secure-agent-architecture.md          # Episode 02 .NET 10 architecture & 4-caller matrix walkthrough
 ├── src/
 │   ├── OrderAgent.Domain/                               # Zero external dependencies
 │   │   ├── Entities/Order.cs
@@ -76,7 +82,7 @@ Runs both unit tests (`ToolArgumentParserTests`) and live ASP.NET Core `WebAppli
 dotnet run --project src/OrderAgent.Api
 ```
 
-_(Note: `OrderAgent.Api` intentionally defaults to a fail-closed authentication scheme in Episode 01; Episode 02 wires live Microsoft Entra ID / OIDC `JwtBearer` authentication and a persistent relational database alongside a live Microsoft Foundry agent.)_
+_(Note: `OrderAgent.Api` intentionally defaults to a fail-closed authentication scheme when started standalone; `OrderAuthorizationMatrixTests` boots the full in-memory ASP.NET Core `.NET 10` pipeline via `WebApplicationFactory<Program>` and tests all 4 caller states against real EF Core 10 SQLite tables.)_
 
 ---
 
@@ -84,7 +90,8 @@ _(Note: `OrderAgent.Api` intentionally defaults to a fail-closed authentication 
 
 - [Use function calling with Microsoft Foundry agents](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/function-calling)
 - [Resource-based authorization in ASP.NET Core (.NET 10)](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resource-based?view=aspnetcore-10.0)
-- [Introduction to authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction)
+- [Global & Named Query Filters in EF Core 10](https://learn.microsoft.com/en-us/ef/core/querying/filters)
+- [Integration tests in ASP.NET Core (.NET 10)](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0)
 - [OWASP API1:2023 Broken Object Level Authorization](https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/)
 
 ---
